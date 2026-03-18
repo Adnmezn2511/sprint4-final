@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ graph_record.title }}</title>
+  </head>
+  <body>
+    <h1>{{ graph_record.title }}</h1>
+    <div>
+      <!-- Affichage du graphe Plotly -->
+      {{ graph_html|safe }}
+    </div>
+  </body>
+</html>

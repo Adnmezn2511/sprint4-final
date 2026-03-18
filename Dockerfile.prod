@@ -1,0 +1,44 @@
+# build frontend
+FROM node:lts AS frontbuild
+WORKDIR /app
+COPY frontend/.env.production .
+COPY frontend/package*.json .
+COPY frontend/src src
+COPY frontend/public public
+RUN npm install
+RUN npm run build
+
+# build backend serving frontend
+FROM python:3.13-slim AS backbuild
+WORKDIR /app
+
+COPY backend backend
+COPY --from=frontbuild app/build frontend/build
+
+WORKDIR /app/backend
+
+RUN pip install --upgrade pip 
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir gunicorn==23.0.0
+RUN pip install --no-cache-dir whitenoise==6.9.0
+
+ENV DJANGO_SETTINGS_MODULE=backend.settingsprod
+RUN python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' >> key
+
+RUN python manage.py collectstatic --noinput
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+
+# final image
+FROM python:3.13-slim
+WORKDIR /app
+
+ENV PYTHONUNBUFFERED=1 
+ENV DJANGO_SETTINGS_MODULE=backend.settingsprod
+
+COPY --from=backbuild /app/backend .
+COPY --from=backbuild /usr/local/lib/python3.13/site-packages/ /usr/local/lib/python3.13/site-packages/
+COPY --from=backbuild /usr/local/bin/ /usr/local/bin/
+
+EXPOSE 8000
+CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "--worker-class", "gthread", "--threads", "4", "--timeout", "120", "backend.wsgi:application"]

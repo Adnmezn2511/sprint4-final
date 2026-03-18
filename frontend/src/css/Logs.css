@@ -1,0 +1,75 @@
+     
+.logs-container {
+    position: absolute;
+    width: 80%;
+    top: 25%;
+    left: 8%;
+    padding: 30px;
+    border-radius: 8px;
+    color: rgb(39, 7, 196);
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+}
+
+.logs-container h2 {
+    margin-left: -5%;
+    margin-bottom: 3%;
+}
+
+.log {
+    margin-left: 13%;
+    border-radius: 12px;
+    color: rgb(39, 7, 196);
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.2);
+    transition: box-shafow 0.3s ease;
+    border: 1px solid rgb(190, 187, 209);
+/*  border: 1px solid rgb(39, 7, 196);*/
+  }
+
+
+  
+  .log td {
+    padding-left: 40px; /* Espacement à gauche de chaque cellule */
+    padding-right: 40px; /* Espacement à droite de chaque cellule */
+    padding-bottom: 8px;
+  }
+  
+  .log th {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+  }
+
+  .d-img {
+    position: absolute;
+    right: 21%;
+    top: 65%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-size: 16px;
+    color: rgb(39, 7, 196); 
+  }
+  
+  .dl-img {
+    position: absolute;
+    right: 17%;
+    top: 58%;
+    display: inline-block;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 16px;
+    border-radius: 5px;
+    color: rgb(39, 7, 196); 
+    transition: transform 0.3s ease;
+  }
+
+  
+  .dl-button.active {
+    color: rgb(231, 222, 222);
+    border: 1px solid rgb(231, 222, 222);
+    background-color: rgb(39, 7, 196);
+  }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<title>Help and support</title>
+</head>
+<body>
+	<p>In the navigation bar, switch to the <b>Multiplex</b> to start a random
+		walk.</p>
+	<h1>Uploading a graph</h1>
+	<img src="load.png">
+	<p>First of all, you must upload your graph. Our program uses .ZIP archive to
+		represent graphs. The .ZIP archive should contain :</p>
+	<ul>
+		<li>A file named <code>layer_name.tsv</code>, with two columns, attributing
+			to each layer index a name</li>
+		<li>A folder named <code>multiplex</code> containing
+			<ul>
+				<li>Numbered folders (start from 1) corresponding to the layers,
+					each containing TSV files describing relations between nodes of that
+					layer</li>
+			</ul>
+		</li>
+		<li>
+			A folder named <code>bipartite</code> containing files named according to the
+			<code>M_N.tsv</code> pattern, where M and N are integers, describing
+			relations
+			between nodes of layer M et nodes of layer N.
+		</li>
+	</ul>
+	<p>When you are done uploading your archive, click >>> to continue.</p>
+	<h2>Uploading wizard</h2>
+	<p>If you don’t have a ZIP archive ready, you can use our uploading wizard by
+		clicking on <b>Generate Zip</b>. We will guide you step by step into building
+		a
+		perfect archive.</p>
+	<img src="generate_zip.png">
+	<h1>Random walk settings</h1>
+	<img src="layer_selection.png">
+	<p>You must first select the layer in which the seed you wish to use is
+		located. Then, click >>> to continue.</p>
+	<p>Wait a few seconds as all seeds in this layer are loaded from the graph.</p>
+	<img src="randomwalk.png">
+	<p>You can now fill in the parameters to be used by the random walk
+		algorithm.</p>
+	<ul>
+		<li><b>Title: </b>this is necessary so your results can be identified in the
+			database.</li>
+		<li><b>User: </b>enter a username which will also be saved in the
+			database.</li>
+		<li><b>Steps: </b>the number of steps (or iterations) the random walk
+			algorithm will take inside the graph.</li>
+		<li><b>Top: </b>the amount of nodes that will be shown in each layer in the
+			interactive graph.</li>
+		<li><b><a
+					href="https://alberto-valdeolivas.github.io/RandomWalkRestartMH/">Restart</a></b></li>
+		<li><b>Seeds: </b>the nodes that will be used as seeds for the random walk.
+			The seed names, if there are more than one, should be separated by commas.
+			You can use the grid view on the right side of the screen, as well as the
+			search bar, to complete your selection. Your selection of seeds needs to be
+			validated in the dialog that shows up on the top-left of the
+			window.</li>
+
+	</ul>
+
+	<h1>Viewing the graph</h1>
+	<p>If popup windows aren't allowed by your browser settings, the random
+		walk results are still available in the <b>Logs</b> database. Otherwise, the
+		interactive graph should display in a new tab.</p>
+	<img src="graph.png">
+	<p>Layers of the graph are shown as horizontal rectangles. Interactions within
+		one layer are displayed as grey lines, while interactions between layers are
+		color-coded. Nodes have a varying diameter depending on their random walk
+		score.</p>
+	<p>Clicking on any type of interaction within the legend allows you to display
+		or hide the edges of that type, to surface the information most relevant to
+		you.</p>
+	<p>Hovering on any node will display an infotip containing the node’s name,
+		layer, random walk score, and a list of all its neighbours.</p>
+	<p>Various zoom functions provided by <b>Plotly</b> are available in the
+		toolbar. You can always double-click to reset the view.</p>
+	<img src="hover.png">
+
+	<h2>Printing</h2>
+	<p>You can use your browser's <b>Print</b> feature to print the graph as it is
+		currently
+		displayed, or export it to any program installed as a printer (such as a PDF
+		converter).</p>
+	<h1>Accessing previous results</h1>
+	<img src="logs.png">
+	<p>In the <b>Logs</b> database, you can access the results of every random walk
+		executed so far. Every entry is listed with its title, author and date, as
+		well as three icons</p>
+	<ul>
+		<li><b>Download</b> a ZIP archive containing both the input and output
+			data</li>
+		<li><b>View</b> the interactive graph in your browser</li>
+		<li><b>Delete</b> an entry from the database</li>
+	</ul>
+
+</body>

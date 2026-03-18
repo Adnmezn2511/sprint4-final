@@ -1,0 +1,64 @@
+variables:
+  # Use the overlayfs driver for improved performance:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
+# docker-build-back:
+#   tags:
+#   - monpc
+
+#   stage: build
+  
+#   image: docker:cli
+
+#   services:
+#   - name: docker:dind
+#     alias: dinde
+
+#   variables:
+#     # Tell docker CLI how to talk to Docker daemon; see https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-executor
+#     DOCKER_HOST: tcp://dinde:2375/
+  
+#   script:
+#   - cd backend/
+#   - docker build -t back .
+
+docker-compose-tests:
+  tags:
+    - monpc
+    #- Gitlab-runner
+  # Use the official docker image.
+  image: docker:cli
+
+  services:
+  - name: docker:dind
+    alias: dinde
+
+  variables:
+    # Tell docker CLI how to talk to Docker daemon; see https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-executor
+    DOCKER_HOST: tcp://dinde:2375/
+
+  stage: test
+
+  # before_script:
+  #   - docker version
+  #   - docker compose version
+
+  # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
+  # Default branch is also tagged with `latest`
+  script:
+    - docker compose up -d --build
+    - docker exec -e CI=true server python manage.py test app.tests
+    - docker exec -e CI=true client npm test
+    
+frontci:
+  rules:
+    - changes:
+      - frontend/*
+      - frontend/**
+      - frontend/**/*
+      - frontend/**/**
+  trigger:
+    include: 'frontend/.gitlab-ci.yml'
+    strategy: depend
+

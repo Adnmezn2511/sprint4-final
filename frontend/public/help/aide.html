@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<title>Aide et support</title>
+</head>
+<body>
+	<p>Dans la barre de navigation, passez à l'onglet <b>Multiplex</b> pour
+		démarrer une marche aléatoire.</p>
+	<h1>Mettre en ligne un graphe</h1>
+	<img src="load.png">
+	<p>Premièrement, vous devez mettre en ligne votre graphe. Notre programme
+		utilise des archives .ZIP
+		pour représenter les graphes. L'archive .ZIP doit contenir :</p>
+	<ul>
+		<li>Un fichier <code>layer_name.tsv</code>, contenant deux colonnes, qui
+			attribue à
+			chaque numéro de couche un nom</li>
+		<li>Un dossier <code>multiplex</code> contenant
+			<ul>
+				<li>Des dossiers numérotés (à partir de 1) correspondant aux couches,
+					chacun contenant les fichiers TSV décrivant les relations entre nœuds d’une
+					même couche</li>
+			</ul>
+		</li>
+		<li>
+			Un dossier <code>bipartite</code> contenant des fichiers
+			<code>M_N.tsv</code>, où M et N sont des
+			entiers, décrivant les relations entre les nœuds de la couche M et ceux de la
+			couche N respectivement.
+		</li>
+	</ul>
+	<p>Après avoir mis en ligne votre archive, cliquez sur >>> pour continuer.</p>
+	<h2>Assistant de mise en ligne</h2>
+	<p>Si vous n'avez pas d'archive ZIP préparée, vous pouvez utiliser notre
+		assistant
+		de mise en ligne en cliquant sur
+		<b>Generate Zip</b>. Nous vous guiderons étape par étape pour construire une
+		archive parfaite.</p>
+	<img src="generate_zip.png">
+	<h1>Paramètres de la marche aléatoire</h1>
+	<img src="layer_selection.png">
+	<p>Vous devez tout d'abord sélectionner la couche du graphe dans laquelle la
+		graine que vous souhaitez utiliser pour la marche aléatoire
+		se trouve. Ensuite, cliquez sur >>> pour continuer.</p>
+	<p>Patientez quelque secondes, le temps que toutes les graines de cette couche
+		soient chargées</p>
+	<img src="randomwalk.png">
+	<p>Vous pouvez maintenant préciser les paramètres que l'algorithme de marche
+		aléatoire utilisera.
+	</p>
+	<ul>
+		<li><b>Title: </b>un titre est nécessaire pour retrouver vos données dans la
+			base de données <b>Logs</b>.</li>
+		<li><b>User: </b>entrez un nom d'utilisateur, qui sera aussi enregistré dans
+			la base de données.</li>
+		<li><b>Steps: </b>Le nombre de pas (ou itérations) effectués par l'algorithme
+			de marche aléatoire dans le graphe.
+		</li>
+		<li><b>Top: </b>le nombre de nœuds qui seront affichés dans chaque couche du
+			graphe interactif.
+		</li>
+		<li><b><a
+					href="https://alberto-valdeolivas.github.io/RandomWalkRestartMH/">Restart</a></b></li>
+		<li><b>Seeds: </b>
+			Les nœuds qui seront utilisés comme graines pour la marche aléatoire.
+			Les noms de graines, s'il y en a plusieurs, doivent être séparées par des
+			virgules.
+			Vous pouvez utiliser l'affichage en grille (sur la droite de l'écran) ainsi
+			que la barre de recherche pour compléter votre sélection.
+			Celle-ci doit être validée dans la boite de dialogue qui s'affiche en haut à
+			gauche de la fenêtre.
+		</li>
+
+	</ul>
+
+	<h1>Affichage du graphe</h1>
+	<p>Si les fenêtres popup ne sont pas autorisées par les paramètres de votre
+		navigateur,
+		les résultats de la marche aléatoire restent disponibles dans la base de
+		données <b>Logs</b>.
+		Sinon, le graphe interactif devrait s'afficher dans un nouvel onglet.
+	</p>
+	<img src="graph.png">
+	<p>Les couches du graphe sont représentées par des rectangles horizontaux.
+		Les interactions dans une même couche sont affichées comme des lignes grises,
+		tandis que celles entre des couches différentes reçoivent un code couleur.
+		Les nœuds ont des diamètres qui varient en fonction de leur score de marche
+		aléatoire.
+	</p>
+	<p>En cliquant sur un type d'intéraction dans la légende, vous pouvez choisir
+		d'afficher ou de masquer les arêtes de ce type, pour mettre en valeur les
+		informations qui vous semblent les plus pertinentes.
+	</p>
+	<p>Lorsque vous survolez un nœud, une info-bulle s'affiche contenant le nom de
+		ce nœud,
+		sa couche, son score de marche aléatoire, et une liste de tous ses voisins.
+	</p>
+	<p>
+		Dans la barre d'outils, de nombreuses fonctions de zoom proposées par
+		<b>Plotly</b> sont disponibles. Vous pouvez toujours double-cliquer pour
+		revenir à l'affichage par défaut.</p>
+	<img src="hover.png">
+
+	<h2>Impression</h2>
+	<p>Vous pouvez utiliser la fonction <b>Imprimer</b> de votre navigateur pour
+		imprimer le graphe tel qu'affiché, ou pour l'exporter vers tout programme
+		installé en tant qu'imprimante (comme par exemple un convertisseur PDF).</p>
+	<h1>Accéder aux résultats précédents</h1>
+	<img src="logs.png">
+	<p>Dans la base de données <b>Logs</b>, vous pouvez accéder aux résultats de
+		toutes les marches aléatoires exécutées jusqu'ici. Chaque entrée est listée
+		avec son titre,
+		son auteur et sa date, ainsi que trois icônes permettant de
+	</p>
+	<ul>
+		<li><b>Télécharger</b> une archive ZIP contenant les données d'entrée et de
+			sortie</li>
+		<li><b>Afficher</b> le graphe interactif dans votre navigateur</li>
+		<li><b>Supprimer</b> une entrée de la base de données</li>
+	</ul>
+
+</body>

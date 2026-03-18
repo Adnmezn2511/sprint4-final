@@ -1,0 +1,100 @@
+.m-form-container {
+  width: 40%; 
+  height: 35%; 
+  color: rgb(39, 7, 196);
+  position: absolute;
+  top: 30%;
+  left: 29%;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+  margin-left: 1%;
+  border-radius: 10px;
+}
+
+.m-form-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px; 
+}
+
+.m-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.m-form-group select {
+  margin-top: 3%;
+  outline: none; 
+  border: 1px solid rgb(39, 7, 196);
+  padding: 10px;
+  width: 31.7%;
+  margin-left: 34%;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: rgb(231, 222, 222);
+  box-shadow: 0 4px 12px rgb(39, 7, 196, 0.2);
+  color: rgb(39, 7, 196); 
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease; 
+}
+
+.m-form-group select:hover { 
+  cursor: pointer;
+  transform: scale(1.005); 
+  box-shadow: 0px 1px 5px rgba(39, 7, 196,0.6);
+}
+
+
+select option {
+  margin-left: 50%;
+}
+
+select option:hover {
+  background-color: rgb(39, 7, 196);
+  color: rgb(231, 222, 222);
+
+}
+
+
+.m-button {
+  background-color: rgb(39, 7, 196);
+  color: white;
+  width: 15%;
+  margin-left: 0%;
+  padding: 15px 30px;
+  font-size: 1.1em;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 7%;
+  margin-bottom: 5%;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.m-button:hover {
+  background-color: rgb(19, 2, 104);
+  box-shadow: 0 6px 12px rgba(255, 140, 0, 0.13);
+}
+
+.m-back {
+  position: absolute;
+  cursor: pointer;
+  top : 74%;
+  left: 12%;
+  margin-bottom: 10%;
+  color: rgb(39, 7, 196);
+}
+
+.m-change-couche {
+  position: absolute;
+  cursor: pointer;
+  top : 75%;
+  right: 12%;
+  margin-bottom: 10%;
+  color: rgb(39, 7, 196);
+}
+

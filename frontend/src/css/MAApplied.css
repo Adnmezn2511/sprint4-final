@@ -1,0 +1,28 @@
+.options-container {
+    width: 70%; 
+    height: 60%; 
+    color: rgb(39, 7, 196);
+    position: absolute;
+    top: 25%;
+    left: 13.9%;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+    margin-left: 1%;
+    border-radius: 10px;
+}
+
+.params-chosen {
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.2);
+    width: 30%;
+    position: absolute;
+    left: 34%;
+    border-radius: 10px;
+}
+
+.mmapplied-return {
+    position: absolute;
+    cursor: pointer;
+    left: 5%;
+    bottom: 8%;
+    color: rgb(39, 7, 196);
+}

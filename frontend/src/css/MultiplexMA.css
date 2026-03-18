@@ -1,0 +1,306 @@
+.algo-options-container1 {
+    width: 30%; 
+    height: 112%; 
+    color: rgb(39, 7, 196);
+    position: absolute;
+    top: 25%;
+    left: 1%;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+    margin-left: 1%;
+    border-radius: 10px;
+  }
+
+  .seeds-global-container1 {
+    width: 64%; 
+    height: 94%; 
+    color: rgb(39, 7, 196);
+    position: absolute;
+    top: 25%;
+    left: 33%;
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+    margin-left: 1%;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+  }
+
+  
+.mma-form-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px; 
+  }
+
+  .mma-form-group label {
+    margin-left: 0%;
+  }
+
+  .mma-form-group {
+    margin-left: -1.5%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  
+  .mma-form-group input {
+    text-align: center;
+    outline: none;
+    border: 1px solid rgb(39, 7, 196);
+    padding: 10px;
+    width: 30%;
+    margin-top: 2%;
+    margin-left: 35%;
+    margin-bottom: 3%;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: rgb(231, 222, 222);
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.2);
+    color: rgb(39, 7, 196);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  }
+  
+  .mma-form-group input:hover {
+    transform: scale(1.005); 
+    box-shadow: 0px 1px 5px rgba(39, 7, 196,0.6);
+  }
+  
+  .mma-form-group input::placeholder, .seeds-search-field input::placeholder {
+    color: rgba(39, 7, 196, 0.378); 
+  }
+  
+  .mma-button {
+    text-align: center;
+    background-color: rgb(39, 7, 196);
+    color: white;
+    width: 27.5%;
+    margin-left: -2%;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+  }
+  
+  .mma-button:hover {
+    background-color: rgb(19, 2, 104);
+    box-shadow: 0 6px 12px rgba(255, 140, 0, 0.13);
+  }
+  
+  .mma-change-couche {
+    position: absolute;
+    cursor: pointer;
+    left: 12%;
+    bottom: 4%;
+    color: rgb(39, 7, 196);
+  }
+
+.seeds-search-field input{
+  outline: none;
+  text-align: center;
+  border: 1px solid rgb(39, 7, 196);
+  padding: 10px;
+  width: 30%;
+  margin-top: 2%;
+  margin-left: 0%;
+  margin-bottom: 6%;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: rgb(231, 222, 222);
+  box-shadow: 0 4px 20px rgba(39, 7, 196, 0.2);
+  color: rgb(39, 7, 196);
+}  
+
+.seeds-container {
+  position: absolute;
+  right: 4.8%;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(39, 7, 196, 0.2);
+  display: grid;
+  margin-left: 9.3%;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
+  padding: 10px;
+  height: calc(70% - 76px); 
+  overflow-y: auto;
+}
+
+.seeds-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.seeds-container::-webkit-scrollbar-thumb {
+  background-color: rgb(39, 7, 196);
+  height: 10%;
+  width: 10%;
+  border-radius: 10px;
+  border: 3px solid rgba(39, 7, 196, 0.5); 
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.seeds-container::-webkit-scrollbar-track {
+  background-color: rgba(136, 122, 208, 0.1);
+  border-radius: 10px; 
+}
+
+.seeds-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(8, 3, 35);
+  width: 80%;
+}
+
+.seed-card {
+  margin-left: 0.1%;
+  cursor: pointer;
+  width: 100%;
+  height: 80%;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(39, 7, 196, 0.2);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seed-card:hover {
+  transform: scale(1.1); 
+}
+
+.seed-card p {
+  margin-top: 4%;
+}
+
+.seed-card.opacity {
+  opacity: 30%;
+  pointer-events: none;
+}
+
+.seed-card.chosen, .seed-card.correct.chosen {
+  background-color: rgb(39, 7, 196);
+  color: rgb(231, 222, 222);
+}
+
+.seed-card.correct {
+  background-color: rgb(12, 105, 12);
+  color: rgb(231, 222, 222);
+  box-shadow: 0 4px 20px rgba(5, 141, 41, 0.4);
+}
+
+.popup-seeds-valid {
+  min-width: 20%; 
+  min-height: 10%; 
+  background-color:  rgb(231, 222, 222);
+  color: rgb(39, 7, 196);
+  border: 1px solid rgb(39, 7, 196); 
+  position: fixed;
+  top: 17%;
+  left: 2%;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(39, 7, 196, 0.3);
+  margin-left: 1%;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.popup-seeds-invalid {
+  min-width: 20%; 
+  min-height: 10%; 
+  background-color:  rgb(231, 222, 222);
+  border: 1px solid red; 
+  position: fixed;
+  top: 17%;
+  left: 2%;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(196, 7, 7, 0.3);
+  margin-left: 1%;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.popup-seeds-sc {
+  font-size:small;
+  cursor: pointer;
+}
+
+.seed-invalid-atm {
+  color: red;
+}
+
+.popup-seeds-sc:hover {
+  color: red;
+}
+
+.popup-seeds-valid .fa-check, .popup-seeds-invalid .fa-check {
+  margin-left: 40px;
+  margin-bottom: 5%;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.popup-seeds-valid .fa-check:hover, .popup-seeds-invalid .fa-check:hover {
+ color: rgb(26, 150, 26);
+}
+
+.popup-seeds-valid .fa-times, .popup-seeds-invalid .fa-times {
+  cursor: pointer;
+  font-size: 23px;
+}
+
+.popup-seeds-valid .fa-times:hover, .popup-seeds-invalid .fa-times:hover {
+  color: red;
+}
+
+.loading-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 40%;
+  width: 60%;
+  color: rgb(39, 7, 196);
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+  border-radius: 10px;
+  align-items: center;
+}
+
+.loading-container p {
+  margin-bottom: 10%;
+  margin-right: 1%;
+}
+
+.spinner {
+  position: fixed;
+  top: 60%;
+  left: 46.3%;
+  border: 4px solid #f3f3f3; 
+  border-top: 4px solid rgb(39, 7, 196); 
+  box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.MA-blank-container {
+  position: absolute;
+  bottom: -50%;
+  left: 13%;
+  width: 70%;
+  background: rgb(231, 222, 222);
+  color: rgb(231, 222, 222);
+}

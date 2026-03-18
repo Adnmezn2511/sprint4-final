@@ -1,0 +1,9 @@
+services:
+  multiplex:
+    container_name: multiplex
+    build:
+      dockerfile: Dockerfile.prod
+    volumes:
+      - ./backend/samples:/app/samples
+    ports:
+      - "80:8000"

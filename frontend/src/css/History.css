@@ -1,0 +1,246 @@
+/* frontend/src/css/History.css */
+
+.logs-container {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 80%;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 8px;
+    color: rgb(39, 7, 196);
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+}
+
+.logs-container h2 {
+    margin-top: -0.5%;
+    margin-left: 0%;
+}
+
+.log {
+    margin: 0 auto;
+    width: 90%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgb(231, 222, 222);
+    transition: all 0.3s ease;
+}
+
+.log:hover {
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.2);
+    transform: translateY(-2px);
+}
+
+.log td,
+.log th {
+    padding: 12px 20px;
+    border-bottom: 1px solid #bebbd1;
+}
+
+.log tr:last-child td {
+    border-bottom: none;
+}
+
+.download-btn {
+    padding: 8px 16px;
+    background: transparent;
+    border: 2px solid rgb(39, 7, 196);
+    border-radius: 5px;
+    color: rgb(39, 7, 196);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.download-btn:hover {
+    background: rgb(39, 7, 196);
+    color: rgb(231, 222, 222);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(39, 7, 196, 0.2);
+}
+
+.error {
+    color: #dc3545;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    background: #fff0f0;
+}
+
+.log td:nth-child(4) {
+    min-width: 150px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .logs-container {
+        width: 95%;
+        padding: 15px;
+    }
+    .log {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+    .download-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+.action-buttons {
+    margin-left: 24%;
+    display: flex;
+    gap: 10px;
+}
+
+.view-btn {
+    padding: 8px 16px;
+    color: rgb(39, 7, 196);
+    border: 2px solid rgb(39, 7, 196);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-btn:hover {
+    background-color: rgb(39, 7, 196);
+    color: rgb(231, 222, 222);
+    transform: translateY(-2px);
+}
+
+.delete-btn {
+    padding: 8px 16px;
+    color: rgb(253, 0, 0);
+    border: 2px solid rgb(253, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: rgb(253, 0, 0);
+    color: rgb(231, 222, 222);
+    transform: translateY(-2px);
+}
+
+.fullscreen-graph {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    z-index: 9999;
+}
+
+.hist-blank-container {
+    position: absolute;
+    bottom: -10%;
+    left: 13%;
+    width: 70%;
+    background: rgb(231, 222, 222);
+    color: rgb(231, 222, 222);
+}
+
+.no-hist-b-c {
+    position: absolute;
+    bottom: 0%;
+    left: 13%;
+    width: 70%;
+    background: rgb(231, 222, 222);
+    color: rgb(231, 222, 222);
+}
+
+.no-hist {
+    margin-bottom: 4%;
+    margin-top: 4%;
+    margin-right: 0.1%;
+}
+
+.graph-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.graph-modal-content {
+    background: #fff;
+    border-radius: 10px;
+    width: 90vw;
+    max-width: 1200px;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(39, 7, 196, 0.18);
+    overflow: hidden;
+}
+
+.graph-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.graph-modal-title {
+    color: rgb(39, 7, 196);
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.graph-modal-close {
+    background: transparent;
+    border: 2px solid rgb(253, 0, 0);
+    color: rgb(253, 0, 0);
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.graph-modal-close:hover {
+    background: rgb(253, 0, 0);
+    color: #fff;
+}
+
+.graph-modal-params {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.graph-modal-param-badge {
+    background: rgba(39, 7, 196, 0.07);
+    border: 1px solid rgba(39, 7, 196, 0.2);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.82rem;
+    color: rgb(39, 7, 196);
+}
+
+.graph-modal-plot {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+.graph-modal-loading {
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px 50px;
+    color: rgb(39, 7, 196);
+    font-size: 1.1rem;
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.15);
+}

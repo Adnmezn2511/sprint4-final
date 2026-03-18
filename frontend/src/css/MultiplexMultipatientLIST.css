@@ -1,0 +1,69 @@
+.mml-container {
+    width: 40%; 
+    height: auto;
+    color: rgb(39, 7, 196);
+    position: absolute;
+    top: 30%;
+    left: 29%;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(39, 7, 196, 0.1);
+    margin-left: 1%;
+    border-radius: 10px;
+}
+
+.mml-title {
+    font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+.mml-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mml-graph-line {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 20px 10px 20px;
+    border-bottom: 1px solid rgb(39, 7, 196, 0.1);
+    gap: 10px;
+}
+
+.mml-graph-line > span {
+    flex: 1;
+    text-align: left;
+    margin-right: auto;
+}
+
+.mml-graph-metrics {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 4px;
+}
+
+.mml-graph-data {
+    font-size: 13px;
+    margin: 2px 0;
+    line-height: 1.2;
+}
+
+.mml-button {
+    text-align: center;
+    background-color: rgb(39, 7, 196);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.mml-button:hover {
+    background-color: rgb(19, 2, 104);
+    box-shadow: 0 6px 12px rgba(255, 140, 0, 0.13);
+}

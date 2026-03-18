@@ -1,0 +1,11 @@
+venv/
+**/__pychache__/**
+**/venv/**
+setup_example/
+**/samples/**/output/
+save_zip/
+**/result**/
+log_zip/
+**/static/**
+*.pyc
+*.pyo

@@ -1,0 +1,29 @@
+/* Graph.css */
+.plotly-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: white;
+  z-index: 9999;
+}
+
+.plotly-graph {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Supprimez les marges par défaut de Plotly */
+.js-plotly-plot .plot-container {
+  margin: 0;
+  padding: 0;
+}
+
+/* Cache la toolbar */
+.modebar {
+  display: none !important;
+}

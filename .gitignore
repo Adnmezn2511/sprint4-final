@@ -1,0 +1,72 @@
+# Fichiers de log
+*.log
+
+# Fichiers de traduction compilés
+*.mo
+*.pot
+
+# Fichiers Python compilés
+*.pyc
+*.pyo
+__pycache__/
+
+testItRWR/
+
+# Répertoires d'environnement virtuel
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Fichiers de base de données SQLite
+db.sqlite3
+db.sqlite3-journal
+
+# Répertoires de médias (téléchargements utilisateurs)
+media/
+
+# Répertoires de fichiers statiques collectés
+staticfiles/
+
+# Fichiers de configuration locaux
+local_settings.py
+.env
+
+# Répertoires de distribution
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Répertoires de test et de couverture
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Répertoires de documentation Sphinx
+docs/_build/
+
+# Répertoires de checkpoints Jupyter Notebook
+.ipynb_checkpoints/
+
+# Répertoires de configuration de l'IDE 
+.idea/
+.vscode/
+
+setup_example/
+
+# .DS_Store
+.DS_Store
+
+backend/log_zip/
