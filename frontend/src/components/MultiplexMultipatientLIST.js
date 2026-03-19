@@ -112,8 +112,12 @@ function MultiplexMultipatientLIST() {
   const mergedGraph = graphList.find((graph) =>
     graph?.layout?.title?.text?.includes("Merged graph")
   );
+  const mergedModulesGraph = graphList.find((graph) =>
+    graph?.layout?.title?.text?.includes("Merged modules")
+  );
   const patientGraphs = graphList.filter((graph) =>
-    !graph?.layout?.title?.text?.includes("Merged graph")
+    !graph?.layout?.title?.text?.includes("Merged graph") &&
+    !graph?.layout?.title?.text?.includes("Merged modules")
   );
 
   if (loadingHistory) {
@@ -157,6 +161,18 @@ function MultiplexMultipatientLIST() {
               onClick={() => openGraphInNewTab(mergedGraph, -1)}
             >
               Open merged graph (all patients)
+            </button>
+          </div>
+        )}
+
+        {mergedModulesGraph && (
+          <div className="mml-merged-section">
+            <button
+              type="button"
+              className="mml-button mml-merged-button"
+              onClick={() => openGraphInNewTab(mergedModulesGraph, -1)}
+            >
+              Open merged modules (all patients)
             </button>
           </div>
         )}
