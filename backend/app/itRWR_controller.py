@@ -2,6 +2,9 @@ from .itRWR.communityProcessor import *
 from .graph.multiplex_graph import MultiplexGraph
 from .graph.graph_merger import merge_patient_graphs
 from .visualization.graph_visualizer import GraphVisualizer
+from .visualization.module_graph_visualizer import (
+  create_fused_modules_interactive_graph,
+)
 from history.models import GraphHistory
 from .utils.misc import create_zip
 import os
@@ -185,9 +188,10 @@ def run_itRWR_multipatient(log_zip_dir, input_zip_path, result_dir, dico_patient
       user: User identifier.
 
     Returns:
-      tuple (dict, plotly.Figure or None):
+    tuple (dict, plotly.Figure or None, plotly.Figure or None):
           - figs: {patient_id: plotly_fig}
           - merged_fig: plotly figure of the merged graph, or None if < 2 patients
+          - merged_modules_fig: plotly figure of fused modules, or None if < 2 patients
     """
     figs = {}
     patient_graph_data = {}
@@ -227,6 +231,7 @@ def run_itRWR_multipatient(log_zip_dir, input_zip_path, result_dir, dico_patient
 
     # Générer le graphe fusionné
     merged_fig = None
+    merged_modules_fig = None
     if len(patient_graph_data) >= 2:
         G_merged, merged_layers = merge_patient_graphs(patient_graph_data)
 
@@ -272,6 +277,24 @@ def run_itRWR_multipatient(log_zip_dir, input_zip_path, result_dir, dico_patient
             if os.path.exists(path):
                 os.remove(path)
 
-    return figs, merged_fig
+        # Générer la visualisation des modules fusionnés
+        with tempfile.NamedTemporaryFile(suffix=".html", delete=False) as tmp_mod:
+            merged_modules_output_path = tmp_mod.name
+
+        active_patients = list(patient_graph_data.keys())
+        merged_modules_fig, modules_list = create_fused_modules_interactive_graph(
+            G_merged=G_merged,
+            merged_layers=merged_layers,
+            node_positions=visualizer.pos,
+            active_patients=active_patients,
+            output_file=merged_modules_output_path,
+        )
+
+        # Nettoyer les fichiers temporaires
+        for path in [merged_modules_output_path, merged_modules_output_path.replace(".html", ".png")]:
+            if os.path.exists(path):
+                os.remove(path)
+
+    return figs, merged_fig, merged_modules_fig
 
     

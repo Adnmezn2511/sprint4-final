@@ -248,7 +248,7 @@ def getMultipatientGraph(request):
 
     # Run the itRWR algorithm and set the result to interactive Plotly figures
     try:
-        figs, merged_fig = run_itRWR_multipatient(
+        figs, merged_fig, merged_modules_fig = run_itRWR_multipatient(
             
             log_zip_dir,
             input_zip_path,
@@ -281,6 +281,9 @@ def getMultipatientGraph(request):
     result = payload
     if merged_fig is not None:
         result.append(merged_fig.to_dict())
+
+    if merged_modules_fig is not None:
+        result.append(merged_modules_fig.to_dict())
 
     return Response(result)
 

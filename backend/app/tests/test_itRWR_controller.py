@@ -163,6 +163,7 @@ class TestItRWRController(unittest.TestCase):
 
         with patch("app.itRWR_controller.merge_patient_graphs") as mock_merge, \
              patch("app.itRWR_controller.GraphVisualizer") as mock_gv_cls, \
+             patch("app.itRWR_controller.create_fused_modules_interactive_graph") as mock_module_fig_gen, \
              patch("app.itRWR_controller.get_layer_names_from_zip", return_value={}), \
              patch("app.itRWR_controller.tempfile.NamedTemporaryFile") as mock_tmp, \
              patch("app.itRWR_controller.os.path.exists", return_value=False):
@@ -174,12 +175,15 @@ class TestItRWRController(unittest.TestCase):
             mock_gv.create_interactive_graph.return_value = mock_merged_fig
             mock_gv_cls.return_value = mock_gv
 
+            mock_merged_modules_fig = MagicMock()
+            mock_module_fig_gen.return_value = (mock_merged_modules_fig, [])
+
             tmp_context = MagicMock()
             tmp_context.__enter__.return_value = MagicMock(name="/tmp/merged.html")
             tmp_context.__exit__.return_value = False
             mock_tmp.return_value = tmp_context
 
-            figs, merged_fig = run_itRWR_multipatient(
+            figs, merged_fig, merged_modules_fig = run_itRWR_multipatient(
                 log_zip_dir=log_zip_dir,
                 input_zip_path=input_zip_path,
                 result_dir=result_dir,
@@ -196,6 +200,7 @@ class TestItRWRController(unittest.TestCase):
         self.assertEqual(figs["BR664F"], {"figure": fig_br664f, "modules": modules_br664f})
         self.assertEqual(figs["BR101A"], {"figure": fig_br101a, "modules": modules_br101a})
         self.assertIs(merged_fig, mock_merged_fig)
+        self.assertIs(merged_modules_fig, mock_merged_modules_fig)
 
     @patch("app.itRWR_controller.run_itRWR")
     def test_run_itRWR_multipatient_skips_empty_seed_patients(self, mock_run_itRWR):
@@ -204,7 +209,7 @@ class TestItRWRController(unittest.TestCase):
         modules = [{"module_id": "M1", "size": 1, "nodes": ["GENE3"]}]
         mock_run_itRWR.return_value = (fig, graph, ["1"], modules)
 
-        result, merged = run_itRWR_multipatient(
+        result, merged, merged_modules = run_itRWR_multipatient(
             log_zip_dir="/tmp/log_zip",
             input_zip_path="/tmp/input.zip",
             result_dir="/tmp/result",
@@ -220,6 +225,7 @@ class TestItRWRController(unittest.TestCase):
         self.assertNotIn("BR664F", result)
         self.assertEqual(result["BR101A"], {"figure": fig, "modules": modules})
         self.assertIsNone(merged)
+        self.assertIsNone(merged_modules)
 
     @patch("app.itRWR_controller.run_itRWR")
     def test_run_itRWR_multipatient_raises_when_all_patients_have_empty_seeds(self, mock_run_itRWR):

@@ -101,12 +101,15 @@ class TestViews(unittest.TestCase):
         fig_2.to_dict.return_value = {"figure": "patient_2"}
         merged_fig = Mock()
         merged_fig.to_dict.return_value = {"figure": "merged"}
+        merged_modules_fig = Mock()
+        merged_modules_fig.to_dict.return_value = {"figure": "merged_modules"}
         mock_run_itRWR_multipatient.return_value = (
             {
                 "BR664F": {"figure": fig_1, "modules": []},
                 "BR101A": {"figure": fig_2, "modules": []},
             },
             merged_fig,
+            merged_modules_fig,
         )
 
         payload = {
@@ -130,6 +133,7 @@ class TestViews(unittest.TestCase):
                 {"figure": "patient_1", "_modules": []},
                 {"figure": "patient_2", "_modules": []},
                 {"figure": "merged"},
+                {"figure": "merged_modules"},
             ],
         )
 
