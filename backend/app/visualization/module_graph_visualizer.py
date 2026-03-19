@@ -6,45 +6,47 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 
+from app.graph.community_detector import CommunityDetector
 from .edge_bundling import compute_bundled_paths
 
 
-def _extract_scc_modules_with_mapping(G: nx.Graph) -> Tuple[List[Dict], Dict]:
+def _extract_modules_with_mapping(
+    G: nx.Graph,
+    algorithm: str = "scc",
+) -> Tuple[List[Dict], Dict]:
     """
-    Extrait les modules via SCC (composantes fortement connexes) et renvoie :
+    Extrait les modules via l'US-C2 (CommunityDetector) et renvoie :
     - modules (liste sérialisable)
     - node_to_module_id (mapping node_id -> module_id)
     """
     if G is None or G.number_of_nodes() == 0:
         return [], {}
 
-    directed_graph = G if G.is_directed() else nx.DiGraph(G)
-    components = list(nx.strongly_connected_components(directed_graph))
-    components = sorted(components, key=lambda comp: len(comp), reverse=True)
+    detector = CommunityDetector(G, algorithm=algorithm)
+    communities = detector.detect()
+    communities = sorted(communities, key=lambda comp: len(comp), reverse=True)
 
     modules: List[Dict] = []
     node_to_module_id: Dict = {}
 
-    for index, component in enumerate(components, start=1):
+    for index, community in enumerate(communities, start=1):
         module_id = f"M{index}"
 
         # Mapping node_id -> module_id
-        for node in component:
+        for node in community:
             node_to_module_id[node] = module_id
 
         labels = sorted(
             {
-                directed_graph.nodes[node].get(
-                    "label", node[0] if isinstance(node, tuple) else str(node)
-                )
-                for node in component
+                G.nodes[node].get("label", node[0] if isinstance(node, tuple) else str(node))
+                for node in community
             }
         )
 
         modules.append(
             {
                 "module_id": module_id,
-                "size": len(component),
+                "size": len(community),
                 "nodes": labels,
             }
         )
@@ -60,14 +62,16 @@ def _dominant_patient(module_patient_scores: Dict[str, float]) -> Optional[str]:
 
 
 def _build_module_graph(
-    G_merged: nx.Graph, node_to_module_id: Dict
+    G_merged: nx.Graph,
+    node_to_module_id: Dict,
+    algorithm: str = "scc",
 ) -> Tuple[nx.Graph, List[Dict]]:
     """
     Construit un graphe des modules :
-    - nœuds = modules (SCC)
+    - nœuds = modules (US-C2 / CommunityDetector)
     - arêtes entre modules si au moins une arête existe entre leurs nœuds membres
     """
-    modules, _ = _extract_scc_modules_with_mapping(G_merged)
+    modules, _ = _extract_modules_with_mapping(G_merged, algorithm=algorithm)
 
     H = nx.Graph()
 
@@ -125,18 +129,26 @@ def create_fused_modules_interactive_graph(
     k: float = 2.0,
     d: float = 2.0,
     layer_gap: float = 6.0,
+    module_algorithm: str = "scc",
 ) -> Tuple[go.Figure, List[Dict]]:
     """
     Génère la figure Plotly affichant les modules fusionnés avec :
     - edge-path bundling (sur le graphe des modules)
     - couleurs des modules par patient dominant
     """
-    modules, node_to_module_id = _extract_scc_modules_with_mapping(G_merged)
+    modules, node_to_module_id = _extract_modules_with_mapping(
+        G_merged,
+        algorithm=module_algorithm,
+    )
     if not modules:
         fig = go.Figure()
         return fig, []
 
-    H, modules_from_graph = _build_module_graph(G_merged, node_to_module_id)
+    H, modules_from_graph = _build_module_graph(
+        G_merged,
+        node_to_module_id,
+        algorithm=module_algorithm,
+    )
 
     # --- Couleurs patients
     palette = px.colors.qualitative.Plotly
