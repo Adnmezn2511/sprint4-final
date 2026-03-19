@@ -173,7 +173,17 @@ def run_itRWR(log_zip_dir, input_zip_path, result_dir, liste_seeds, nb_iteration
 
     return fig, G, layers, modules
 
-def run_itRWR_multipatient(log_zip_dir, input_zip_path, result_dir, dico_patient_seeds, nb_iterations, nb_nodes_per_layer, restart, user):
+def run_itRWR_multipatient(
+    log_zip_dir,
+    input_zip_path,
+    result_dir,
+    dico_patient_seeds,
+    nb_iterations,
+    nb_nodes_per_layer,
+    restart,
+    user,
+    module_algorithm="scc",
+):
     """
     Runs the itRWR algorithm on a multiplex for multiple patients, then merges all graphs.
 
@@ -288,6 +298,7 @@ def run_itRWR_multipatient(log_zip_dir, input_zip_path, result_dir, dico_patient
             node_positions=visualizer.pos,
             active_patients=active_patients,
             output_file=merged_modules_output_path,
+            module_algorithm=module_algorithm,
         )
 
         # Nettoyer les fichiers temporaires

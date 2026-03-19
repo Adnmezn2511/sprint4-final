@@ -48,9 +48,22 @@ async function GraphJson(seeds, steps, top, restart, user, title) {
  * @param {String} user - The user name.
  * @returns The graph of the result of itRWR in html format.
  */
-async function MultipatientGraphJson(seeds, steps, top, restart, user) {
+async function MultipatientGraphJson(seeds, steps, top, restart, user, moduleAlgorithm) {
     try {
-        console.log("Calling MultipatientGraphJson with:" + JSON.stringify(seeds) + ", " + steps + ", " + top + ", " + restart + ", " + user);
+        console.log(
+            "Calling MultipatientGraphJson with:" +
+            JSON.stringify(seeds) +
+            ", " +
+            steps +
+            ", " +
+            top +
+            ", " +
+            restart +
+            ", " +
+            user +
+            ", moduleAlgorithm=" +
+            moduleAlgorithm
+        );
         const response = await fetch(apiUrl + 'graph/multipatient/', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -60,6 +73,7 @@ async function MultipatientGraphJson(seeds, steps, top, restart, user) {
                 top: top,
                 restart: restart,
                 user: user,
+                module_algorithm: moduleAlgorithm,
             }),
         });
 

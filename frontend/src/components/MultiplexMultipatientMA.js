@@ -20,6 +20,7 @@ function MultiplexMultipatientMA() {
         steps: 5,
         top: 10,
         restart: 0.7,
+        module_algorithm: "scc",
     });
     const [loading, setLoading] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -60,7 +61,8 @@ function MultiplexMultipatientMA() {
                     formData.steps,
                     formData.top,
                     formData.restart,
-                    formData.user
+                    formData.user,
+                    formData.module_algorithm
                 );
 
                 if (response.error) {
@@ -151,6 +153,21 @@ function MultiplexMultipatientMA() {
                                 id="restart"
                                 placeholder={formData.restart}
                                 />
+                            </div>
+
+                            <div className="mmma-form-group">
+                                <label htmlFor="module_algorithm">Module detection (US-C2)</label>
+                                <select
+                                    name="module_algorithm"
+                                    id="module_algorithm"
+                                    value={formData.module_algorithm}
+                                    onChange={handleChange}
+                                >
+                                    <option value="scc">SCC (zones fortement connectées)</option>
+                                    <option value="louvain">Louvain</option>
+                                    <option value="greedy">Greedy modularity</option>
+                                    <option value="connected">Connected components</option>
+                                </select>
                             </div>
 
                             <button

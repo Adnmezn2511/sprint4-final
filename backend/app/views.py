@@ -204,6 +204,14 @@ def getMultipatientGraph(request):
     nb_nodes_per_layer = data.get("top", 10)
     restart = data.get("restart", 0.7)
     user = data.get("user", "user")
+    module_algorithm = data.get("module_algorithm", "scc")
+
+    supported_module_algorithms = ("louvain", "greedy", "connected", "scc")
+    if module_algorithm not in supported_module_algorithms:
+        return Response(
+            {"error": f"module_algorithm must be one of {supported_module_algorithms}"},
+            status=400,
+        )
 
     if not isinstance(dico_patient_seeds, dict) or len(dico_patient_seeds) == 0:
         return Response(
@@ -260,6 +268,7 @@ def getMultipatientGraph(request):
            
             restart,
             user,
+            module_algorithm=module_algorithm,
         
         )
     except ValueError as exc:

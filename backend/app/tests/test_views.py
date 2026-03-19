@@ -121,6 +121,7 @@ class TestViews(unittest.TestCase):
             "top": "10",
             "restart": "0.7",
             "user": "test_user",
+            "module_algorithm": "scc",
         }
 
         request = factory.post("/api/graph/multipatient/", payload, format="json")
@@ -146,6 +147,7 @@ class TestViews(unittest.TestCase):
             10,
             0.7,
             "test_user",
+            module_algorithm="scc",
         )
 
     @patch("app.views.run_itRWR_multipatient")
